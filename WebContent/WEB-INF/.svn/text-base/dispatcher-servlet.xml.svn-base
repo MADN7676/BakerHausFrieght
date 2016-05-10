@@ -1,0 +1,105 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<beans xmlns="http://www.springframework.org/schema/beans"
+	xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+	xmlns:p="http://www.springframework.org/schema/p"
+	xsi:schemaLocation="http://www.springframework.org/schema/beans http://www.springframework.org/schema/beans/spring-beans.xsd">
+
+	<!-- Database configuration -->
+	<import resource="spring/database/spring-datasource.xml"/>
+	<import resource="spring/database/spring-hibernate.xml"/>
+	
+	<!-- Bean declarations -->
+	<import resource="spring/beans/services.xml"/>
+
+
+
+	<bean id="viewResolver"
+          class="org.springframework.web.servlet.view.InternalResourceViewResolver" >
+        <property name="prefix">
+            <value>/WEB-INF/jsp/</value>
+        </property>
+        <property name="suffix">
+            <value>.jsp</value>
+        </property>
+    </bean>
+    
+     
+    <bean id="handlerMapping" class="org.springframework.web.servlet.handler.BeanNameUrlHandlerMapping" 
+    p:interceptors-ref="loginInterceptor" />
+    
+    <bean id="loginInterceptor" class="edu.mayo.icpcg.ldap.LoginInterceptor" />
+    <bean name="/logout.htm" class="edu.mayo.icpcg.ldap.LogoutController"/>
+    
+    
+    <bean id="messageSource" class="org.springframework.context.support.ResourceBundleMessageSource" p:basename="messages" />
+    <bean id="initialSpecimenTrackingValidator" class="edu.mayo.icpcg.validators.InitialSpecimenTrackingValidator"/>
+    <bean id="dnaqcValidator" class="edu.mayo.icpcg.validators.DNAQCValidator"/>
+    <bean id="dnaqcRunValidator" class="edu.mayo.icpcg.validators.DNAQCRunValidator"/>
+    <bean id="seqCoreValidator" class="edu.mayo.icpcg.validators.SeqCoreValidator"/>
+    <bean id="genoCoreValidator" class="edu.mayo.icpcg.validators.GenoCoreValidator"/>
+    
+   <!-- <bean id="initialSpecimenTrackingEditValidator" class="edu.mayo.icpcg.validators.InitialSpecimenTrackingEditValidator"/>
+    <bean id="dnaqcEditValidator" class="edu.mayo.icpcg.validators.DNAQCEditValidator"/>
+    <bean id="genoCoreEditValidator" class="edu.mayo.icpcg.validators.GenoCoreEditValidator"/>
+    <bean id="seqCoreEditValidator" class="edu.mayo.icpcg.validators.SeqCoreEditValidator"/>
+     <bean id="dnaqcRunEditValidator" class="edu.mayo.icpcg.validators.DNAQCRunEditValidator"/> -->
+    
+    
+    <bean id="loginValidator" class="edu.mayo.icpcg.ldap.LoginValidator"
+    p:lanIDService-ref="lanIDService"
+    />
+    <bean id="homeValidator" class="edu.mayo.icpcg.validators.HomeValidator"/>
+    
+    <bean name="/login.htm" class="edu.mayo.icpcg.ldap.LoginController" 
+     p:formView="login" p:successView="redirect:home.htm" 
+     p:lanIDService-ref="lanIDService"
+     p:validator-ref="loginValidator"/>
+    
+    <bean name="/home.htm" class="edu.mayo.icpcg.controllers.HomeController" 
+     p:initialSpecimenTrackingService-ref="initialSpecimenTrackingService" 
+     p:pedigreeInformationService-ref="pedigreeInformationService"
+     p:homeControllerService-ref="homeControllerService"
+     p:formView="home" p:successView="report" p:validator-ref="homeValidator"/>
+        
+    <bean name="/pedigree.htm" class="edu.mayo.icpcg.controllers.PedigreeInfoController" 
+     p:pedigreeInformationService-ref="pedigreeInformationService" p:formView="pedigreeInfo" p:successView="pedigreeInfoResult" />
+    
+	<bean name="/initial.htm" class="edu.mayo.icpcg.controllers.InitialController" 
+     p:initialSpecimenTrackingService-ref="initialSpecimenTrackingService" p:formView="initial" p:successView="initSpecTrackResult" p:validator-ref="initialSpecimenTrackingValidator"/>
+     
+     <bean name="/dnaqc.htm" class="edu.mayo.icpcg.controllers.DNAQCController" 
+     p:initialSpecimenTrackingService-ref="initialSpecimenTrackingService" p:formView="dnaqc" p:successView="dnaqcTrackResult" p:validator-ref="dnaqcValidator"/>
+    
+    <bean name="/seqcore.htm" class="edu.mayo.icpcg.controllers.SeqCoreController" 
+     p:sequencingCoreSubmissionService-ref="sequencingCoreSubmissionService" p:formView="seqcore" p:successView="seqcoreResult" p:validator-ref="seqCoreValidator"/>
+        
+    
+    <bean name="/genocore.htm" class="edu.mayo.icpcg.controllers.GenoCoreController" 
+     p:genotypingCoreSubmissionService-ref="genotypingCoreSubmissionService" p:formView="genocore" p:successView="genocoreResult" p:validator-ref="genoCoreValidator"/>
+    
+    <bean name="/dnaqcrun.htm" class="edu.mayo.icpcg.controllers.DNAQCRunController" 
+     p:dnaqcRunService-ref="dnaqcRunService" p:formView="dnaqcRun" p:successView="dnaqcRunResult" p:validator-ref="dnaqcRunValidator"/>
+     
+       
+    <bean name="/*.htm" class="edu.mayo.icpcg.controllers.NavigationController" 
+     p:pedigreeInformationService-ref="pedigreeInformationService"/>
+     
+    <bean name="/editInitialSpecimenTracking.htm" class="edu.mayo.icpcg.controllers.InitialEditController" 
+     p:initialSpecimenTrackingService-ref="initialSpecimenTrackingService" p:formView="editInitial" p:successView="initSpecTrackResult"/>
+
+	<bean name="/editDNAQC.htm" class="edu.mayo.icpcg.controllers.DNAQCEditController" 
+     p:initialSpecimenTrackingService-ref="initialSpecimenTrackingService" p:formView="editDNAQC" p:successView="dnaqcTrackResult"/>
+	
+      
+    <bean name="/editDNAQCRun.htm" class="edu.mayo.icpcg.controllers.DNAQCRunEditController" 
+     p:dnaqcRunService-ref="dnaqcRunService" p:formView="editDNAQCRun" p:successView="dnaqcRunResult"/>
+      
+    <bean name="/editPedigree.htm" class="edu.mayo.icpcg.controllers.PedigreeInfoEditController" 
+     p:pedigreeInformationService-ref="pedigreeInformationService" p:formView="editPedigree" p:successView="pedigreeInfoResult"/> 
+     
+    <bean name="/editSeqCore.htm" class="edu.mayo.icpcg.controllers.SeqCoreEditController" 
+     p:sequencingCoreSubmissionService-ref="sequencingCoreSubmissionService" p:formView="editSeqCore" p:successView="seqcoreResult" />
+     
+     <bean name="/editGenoCore.htm" class="edu.mayo.icpcg.controllers.GenoCoreEditController" 
+     p:genotypingCoreSubmissionService-ref="genotypingCoreSubmissionService" p:formView="editGenoCore" p:successView="genocoreResult"/> 
+</beans>

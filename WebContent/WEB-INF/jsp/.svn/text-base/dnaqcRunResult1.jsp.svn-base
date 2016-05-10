@@ -1,0 +1,94 @@
+<%@ page language="java" contentType="text/html; charset=ISO-8859-1"
+    pageEncoding="ISO-8859-1"%>
+<!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN" "http://www.w3.org/TR/html4/loose.dtd">
+<%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c"%>
+<html>
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=ISO-8859-1">
+<title>DNAQC Run Tracking Results</title>
+ 
+
+<script type="text/javascript" src="${pageContext.request.contextPath}/javascripts/jquery-latest.js"></script>
+<script type="text/javascript" src="${pageContext.request.contextPath}/javascripts/jquery.fixheadertable.js"></script>
+<script type="text/javascript" src="${pageContext.request.contextPath}/javascripts/table2CSV1.js"></script>
+<link rel="stylesheet" type="text/css" href="${pageContext.request.contextPath}/css/base.css"/>
+<link rel="stylesheet" type="text/css" href="${pageContext.request.contextPath}/css/jquery-ui-1.8.4.custom.css"/>
+
+<script type="text/javascript">
+    $(document).ready(function() {
+    	
+        $('.tablesorter').fixheadertable({
+             
+             height  : 400,
+             width       : 700, 
+             zebra       : true, 
+             colratio    : [250, 250, 250,250], 
+             sortable    : true,
+             
+             sortType    : ['integer','float','float','float'],
+            
+             resizeCol   : true,
+             minColWidth : 50 
+
+
+        });
+        
+    });
+</script>
+<script>
+function getCSVData(){
+ var csv_value=$('#myTable').table2CSV({delivery:'value',header:['MayoLabID','Volume','Amount','QubitR']
+});
+ $("#csv_text").val(csv_value);	
+}
+
+</script>
+</head>
+<body id="content">
+
+<%@include file="header.jsp" %>
+		<br/><br/>
+		
+
+	<center>
+		<h2>DNAQC Run's</h2>
+		<table id="myTable" class="tablesorter">
+			<thead>
+			<tr>
+				
+				<th>Mayo Lab ID</th>
+				
+				
+				<th>Volume</th>
+				
+				<th>Amount</th>
+				<th>QubitR</th>
+				
+				</tr>
+				</thead>
+				<tbody>
+				<c:forEach var="dnaqcRun" items="${dnaqcRunList}">
+					<tr>
+						
+						<td>${dnaqcRun.mayoLabId}</td>
+						
+						<td>${dnaqcRun.volume}</td>
+						
+						<td>${dnaqcRun.amount}</td>
+						<td>${dnaqcRun.qubitR}</td>
+						
+					</tr>
+
+				</c:forEach>
+		</tbody>
+		</table>
+		<form action="exportToCSV.htm" method ="post" > 
+			<input type="hidden" name="csv_text" id="csv_text"/>
+			<input type="hidden" name="fileName" value="dnaqcRun"/>
+			<input type="submit" value="Export to CSV" onclick="getCSVData()"/>
+		</form>
+
+		
+	</center>
+</body>
+</html>

@@ -1,0 +1,77 @@
+10
+
+dir
+2056
+https://bsisvn.mayo.edu/main/projects/i/icpcg/trunk/icpcg/WebContent
+https://bsisvn.mayo.edu/main
+
+
+
+2012-07-18T14:34:19.572131Z
+2053
+m100542
+
+
+svn:special svn:externals svn:needs-lock
+
+
+
+
+
+
+
+
+
+
+
+8f329c14-d232-4f17-8684-7ee34322b8dc
+
+META-INF
+dir
+
+WEB-INF
+dir
+
+css
+dir
+
+images
+dir
+
+javascripts
+dir
+
+redirect.jsp
+file
+4070
+
+
+
+2012-10-23T16:39:17.908000Z
+a47aef15d65bc00ed2e441708b463ba8
+2012-10-24T15:51:16.056262Z
+4070
+m100542
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+45
+

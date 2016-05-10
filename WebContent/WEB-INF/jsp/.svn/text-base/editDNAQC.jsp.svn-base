@@ -1,0 +1,211 @@
+<%@ page language="java" contentType="text/html; charset=ISO-8859-1"
+    pageEncoding="ISO-8859-1"%>
+<!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN" "http://www.w3.org/TR/html4/loose.dtd">
+<%@ taglib uri="http://www.springframework.org/tags/form" prefix="form"%>
+<%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c"%>
+<html>
+
+<meta http-equiv="Content-Type" content="text/html; charset=ISO-8859-1">
+<title>Edit DNAQC</title>
+<script type="text/javascript" src="${pageContext.request.contextPath}/javascripts/jquery-latest.js"></script>
+<script type="text/javascript" src="${pageContext.request.contextPath}/javascripts/scripts.js"></script>
+<script>
+var mayoLabID,parentRLIMSId,dateAdditionalDNARequested,preNGSConcentration,preNGSVolume,preNGSAmount,dnaqcFollowUpStrategy,dateAdditionalDNAReceived,comments;
+function initialValues(){
+	mayoLabID=document.getElementById("mayoLabID").value;
+	parentRLIMSId=document.getElementById("parentRLIMSId").value;
+	
+	dateAdditionalDNARequested=document.getElementById("dateAdditionalDNARequested").value;
+	preNGSConcentration=document.getElementById("preNGSConcentration").value;
+	preNGSVolume=document.getElementById("preNGSVolume").value;
+	preNGSAmount=document.getElementById("preNGSAmount").value;
+	
+	dnaqcFollowUpStrategy=document.getElementById("dnaqcFollowUpStrategy").value;
+	dateAdditionalDNAReceived=document.getElementById("dateAdditionalDNAReceived").value;
+	comments=document.getElementById("comments").value;
+}
+function validateValues(){
+	var mayoLabID1,parentRLIMSId1,dateAdditionalDNARequested1,preNGSConcentration1,preNGSVolume1,preNGSAmount1,dnaqcFollowUpStrategy1,dateAdditionalDNAReceived1,comments1,flag;
+	mayoLabID1=document.getElementById("mayoLabID").value;
+	parentRLIMSId1=document.getElementById("parentRLIMSId").value;
+	dateAdditionalDNARequested1=document.getElementById("dateAdditionalDNARequested").value;
+	preNGSConcentration1=document.getElementById("preNGSConcentration").value;
+	preNGSVolume1=document.getElementById("preNGSVolume").value;
+	preNGSAmount1=document.getElementById("preNGSAmount").value;
+	dnaqcFollowUpStrategy1=document.getElementById("dnaqcFollowUpStrategy").value;
+	dateAdditionalDNAReceived1=document.getElementById("dateAdditionalDNAReceived").value;
+	comments1=document.getElementById("comments").value;
+	
+
+	flag="true";
+	if(isDate(dateAdditionalDNARequested1)){
+		$("#dateAdditionalDNARequestedError").hide();
+	}
+	else
+	{
+		$("#dateAdditionalDNARequestedError").show();
+		flag="false";
+	}
+	if(isDate(dateAdditionalDNAReceived1)){
+		$("#dateAdditionalDNAReceivedError").hide();
+	}
+	else
+	{
+		$("#dateAdditionalDNAReceivedError").show();
+		flag="false";
+	}
+	if(isFloat(preNGSConcentration1)){
+		$("#concError").hide();
+	}
+	else
+	{
+		$("#concError").show();
+		flag = "false";
+		
+	}
+	if(isFloat(preNGSVolume1)){
+		$("#volumeError").hide();
+	}
+	else
+	{
+		$("#volumeError").show();
+		flag = "false";
+	}
+	if(isFloat(preNGSAmount1)){
+		$("#amountError").hide();
+	}
+	else
+	{
+		$("#amountError").show();
+		flag = "false";
+		
+	}
+	
+	if(flag=="false")
+		return false;
+	
+	
+	var confirmString="";
+	if(mayoLabID!=mayoLabID1)
+		confirmString=confirmString+"Mayo Lab ID has been changed from "+mayoLabID+" to "+mayoLabID1+"\n";
+	if(parentRLIMSId!=parentRLIMSId1)
+		confirmString=confirmString+"Parent RLIMS ID has been changed from "+parentRLIMSId+" to "+parentRLIMSId1+"\n";
+	
+	
+	if(preNGSConcentration.replace(/^\s+|\s+$/g, '')!=preNGSConcentration1.replace(/^\s+|\s+$/g, ''))
+		confirmString=confirmString+"Pre-NGS Concentration has been changed from "+preNGSConcentration+" to "+preNGSConcentration1+"\n";
+	if(preNGSVolume.replace(/^\s+|\s+$/g, '')!=preNGSVolume1.replace(/^\s+|\s+$/g, ''))
+		confirmString=confirmString+"Pre-NGS Volume has been changed from "+preNGSVolume+" to "+preNGSVolume1+"\n";
+	if(preNGSAmount.replace(/^\s+|\s+$/g, '')!=preNGSAmount1.replace(/^\s+|\s+$/g, ''))
+		confirmString=confirmString+"Pre-NGS Amount has been changed from "+preNGSAmount+" to "+preNGSAmount1+"\n";
+	if(dateAdditionalDNARequested.replace(/^\s+|\s+$/g, '')!=dateAdditionalDNARequested1.replace(/^\s+|\s+$/g, ''))
+		confirmString=confirmString+"Date Additional DNA Requested has been changed from "+dateAdditionalDNARequested+" to "+dateAdditionalDNARequested1+"\n";
+	if(dateAdditionalDNAReceived.replace(/^\s+|\s+$/g, '')!=dateAdditionalDNAReceived1.replace(/^\s+|\s+$/g, ''))
+		confirmString=confirmString+"Date Additional DNA Received has been changed from "+dateAdditionalDNAReceived+" to "+dateAdditionalDNAReceived1+"\n";
+	if(dnaqcFollowUpStrategy.replace(/^\s+|\s+$/g, '')!=dnaqcFollowUpStrategy1.replace(/^\s+|\s+$/g, ''))
+		confirmString=confirmString+"DNAQC Followup Strategy has been changed from "+dnaqcFollowUpStrategy+" to "+dnaqcFollowUpStrategy1+"\n";
+	
+	if(comments.replace(/^\s+|\s+$/g, '')!=comments1.replace(/^\s+|\s+$/g, ''))
+		confirmString=confirmString+"Comments has been changed from "+comments+" to "+comments1+"\n";
+	if(confirmString.length>1)
+		return confirm(confirmString+"Do you want to save the above changes?");
+	else
+		return true;
+}
+
+</script>
+
+</head>
+
+<body id="content" onload="initialValues()">
+
+<%@include file="header.jsp" %>
+		<br/><br/>
+
+<center>
+		<h2>Edit the below and save</h2>
+		<form:form method="POST" commandName="dnaqcEditModel" onsubmit="return validateValues()" >
+			<form:hidden path="uuid" />
+
+			<table>
+				
+				<tr>
+					<td>Mayo Lab Id</td>
+					<td><form:select path="mayoLabID" id="mayoLabID">
+						<form:options items="${mayoIds}" itemValue="mayoLabID"
+							itemLabel="mayoLabID" />
+						</form:select>
+					</td>
+				</tr>
+				<tr>
+					<td>Parent RLIMS Id</td>
+					
+					<td><form:select path="parentRLIMSId" id="parentRLIMSId">
+						<form:options items="${parentRlimsIds}" itemValue="parentRLIMSID"
+							itemLabel="parentRLIMSID" />
+						</form:select>
+					</td>
+				</tr>
+				<tr>
+					<td>Pre-NGS Concentration</td>
+					<td><form:input path="preNGSConcentration" id="preNGSConcentration"/><br>
+					<div class="error" id="concError" style="display:none;">
+							Invalid format, decimal values only.
+						</div>
+					<%-- <form:errors path="preNGSConcentration" cssClass="error"/> --%>
+					</td>
+				</tr>
+				<tr>
+					<td>Pre-NGS Volume</td>
+					<td><form:input path="preNGSVolume" id="preNGSVolume"/><br>
+					<div class="error" id="volumeError" style="display:none;">
+							Invalid format, decimal values only.
+						</div>
+					<%-- <form:errors path="preNGSVolume" cssClass="error"/> --%></td>
+				</tr>
+				<tr>
+					<td>Pre-NGS Amount</td>
+					<td><form:input path="preNGSAmount" id="preNGSAmount"/><br>
+					<div class="error" id="amountError" style="display:none;">
+							Invalid format, decimal values only.
+						</div>
+					<%-- <form:errors path="preNGSAmount" cssClass="error"/> --%></td>
+				</tr>
+				
+				<tr>
+					<td>Date Additional DNA Requested</td>
+					<td><form:input path="dateAdditionalDNARequested" id="dateAdditionalDNARequested"/> (MM-dd-yyyy)<br>
+					<div class="error" id="dateAdditionalDNARequestedError" style="display:none;">
+							Invalid date format.
+						</div>
+					<%-- <form:errors path="dateAdditionalDNARequested" cssClass="error"/> --%></td>
+				</tr>
+				
+				<tr>
+					<td>Date Additional DNA Received</td>
+					<td><form:input path="dateAdditionalDNAReceived" id="dateAdditionalDNAReceived"/> (MM-dd-yyyy)<br>
+					<div class="error" id="dateAdditionalDNAReceivedError" style="display:none;">
+							Invalid date format.
+						</div>
+					<%-- <form:errors path="dateAdditionalDNAReceived" cssClass="error"/> --%></td>
+				</tr>
+				<tr>
+					<td>DNAQC Follow Up Strategy</td>
+					<td><form:input path="dnaqcFollowUpStrategy" id="dnaqcFollowUpStrategy"/></td>
+				</tr>
+				<tr>
+					<td>Comments</td>
+					<td><form:input path="dnaqcComments" id="comments"/></td>
+				</tr>
+			</table>
+			<br />
+
+			<input type="submit" value="Save" />
+			
+		</form:form>
+		<br>
+		<button onclick="window.location='dnaqcCancelEdit.htm';">Cancel</button>
+	</center>
+
+</body>
+</html>

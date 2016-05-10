@@ -1,0 +1,69 @@
+<%@ page language="java" contentType="text/html; charset=ISO-8859-1"
+    pageEncoding="ISO-8859-1"%>
+<!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN" "http://www.w3.org/TR/html4/loose.dtd">
+<%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c"%>
+<html>
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=ISO-8859-1">
+<script type="text/javascript" src="${pageContext.request.contextPath}/javascripts/jquery-latest.js"></script>
+ <script type="text/javascript" src="${pageContext.request.contextPath}/javascripts/jquery.tablesorter.js"></script>
+<script type="text/javascript" src="${pageContext.request.contextPath}/javascripts/table2CSV1.js"></script>
+<link rel="stylesheet" type="text/css" href="${pageContext.request.contextPath}/css/style.css"/>
+<title>Complete Report</title>
+<!-- <style type="text/css">
+table,td,th {
+	border: 1px solid black;
+}
+</style>
+ --><script type="text/javascript">
+$(document).ready(function()     {
+	
+
+	$("#myTable").tablesorter(
+		
+	);
+	
+});
+	
+
+</script>
+<script>
+function getCSVData(){
+ var csv_value=$('#myTable').table2CSV({delivery:'value'});
+ $("#csv_text").val(csv_value);	
+}
+</script>
+</head>
+<body id="content">
+
+<%@include file="header.jsp" %>
+		<br/><br/>
+<center>
+	<form action="exportToCSV.htm" method ="post" > 
+			<input type="hidden" name="csv_text" id="csv_text"/>
+			<input type="hidden" name="fileName" value="report"/>
+			<input type="submit" value="Export to CSV" onclick="getCSVData()"/>
+		</form>
+	
+	<table id="myTable" class="tablesorter"> 
+	<thead>
+	<tr>
+	<c:forEach var="list" items="${headers}">
+	<th><c:out value="${list}" /></th>
+	</c:forEach>
+	</tr>
+	</thead>
+	<tbody>
+	<c:forEach var="list" items="${trackResult}">
+		<tr>
+		<c:forEach var="list1" items="${list}">
+			<td><c:out value="${list1}" /></td>
+		</c:forEach>
+		</tr>
+	</c:forEach>
+	</tbody>
+	</table>
+	
+</center>
+</body>
+</html>

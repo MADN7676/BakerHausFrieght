@@ -1,0 +1,75 @@
+<%@ page language="java" contentType="text/html; charset=ISO-8859-1"
+    pageEncoding="ISO-8859-1"%>
+<!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN" "http://www.w3.org/TR/html4/loose.dtd">
+<%@ taglib uri="http://www.springframework.org/tags/form" prefix="form"%>
+<%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c"%>
+<html>
+<head>
+
+<meta http-equiv="Content-Type" content="text/html; charset=ISO-8859-1">
+<title>Track Sequencing Core Submission</title>
+</head>
+<body id="content">
+
+<%@include file="header.jsp" %>
+		<br/><br/>
+<center>
+<h2>Select the criteria to track sequencing core submission information</h2>
+<form:form method="POST" commandName="seqCoreModel">
+
+
+
+			<table>
+
+				<tr>
+					<td>MayoLabId's:</td>
+					<td><form:select path="selectedMayoIds" multiple="true"
+							size="5">
+							<form:option value="0" label="select" />
+							<form:options items="${mayoIds}" itemValue="mayoLabId"
+								itemLabel="mayoLabId" />
+						</form:select></td>
+				</tr>
+				<tr>
+					<td>Date's DNA Submitted Between:</td>
+					<td><form:input path="submittedFromDate" />&nbsp; (mm/dd/yyyy) &nbsp;to<form:input
+							path="submittedToDate" />&nbsp; (mm/dd/yyyy)<br>
+					<form:errors path="submittedFromDate" cssClass="error" />&nbsp;<form:errors
+							path="submittedToDate" cssClass="error" /></td>
+				</tr>
+				<tr>
+				<td>NGS Aliquot Id's:</td>
+				<td><form:select path="selectedNGSAliquotIds" multiple="true" size="5">
+							<form:option value="0" label="select" />
+							<c:forEach var="groups" items="${ngsAliquotIds}">
+								<form:option value="${groups.key}" label="${groups.key}"/>
+							</c:forEach>
+							</form:select></td>
+			</tr>
+			<tr>
+				<td>Batch Id's:</td>
+				<td><form:select path="selectedBatchIds" multiple="true" size="5">
+							<form:option value="0" label="select" />
+							<c:forEach var="groups" items="${batchIds}">
+								<form:option value="${groups.key}" label="${groups.key}"/>
+							</c:forEach>
+							</form:select></td>
+			</tr>
+				<tr>
+				<td>Flow Cell Lane's:</td>
+				<td><form:select path="selectedFlowCellLanes" multiple="true" size="5">
+							<form:option value="0" label="select" />
+							<c:forEach var="groups" items="${flowCellLanes}">
+								<form:option value="${groups.key}" label="${groups.key}"/>
+							</c:forEach>
+							</form:select></td>
+			</tr>
+			</table>
+			<br />
+			
+			<input type="submit" value="Track" />
+		</form:form>
+</center>
+
+</body>
+</html>

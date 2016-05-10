@@ -1,0 +1,218 @@
+<%@ page language="java" contentType="text/html; charset=ISO-8859-1"
+    pageEncoding="ISO-8859-1"%>
+<!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN" "http://www.w3.org/TR/html4/loose.dtd">
+<%@ taglib uri="http://www.springframework.org/tags/form" prefix="form"%>
+<%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c"%>
+<html>
+
+<meta http-equiv="Content-Type" content="text/html; charset=ISO-8859-1">
+<title>Edit Sequencing Core Submission</title>
+<script type="text/javascript" src="${pageContext.request.contextPath}/javascripts/jquery-latest.js"></script>
+<script type="text/javascript" src="${pageContext.request.contextPath}/javascripts/scripts.js"></script>
+
+
+<script>
+var mayoLabId,ngsAliquotId,dateSubmitted,concentration,volume,amount,batchId,flowcellLane,flowcellId,comments;
+function initialValues(){
+	mayoLabId=document.getElementById("mayoLabId").value;
+	ngsAliquotId=document.getElementById("ngsAliquotId").value;
+	
+	dateSubmitted=document.getElementById("dateSubmitted").value;
+	concentration=document.getElementById("concentration").value;
+	volume=document.getElementById("volume").value;
+	amount=document.getElementById("amount").value;
+	
+	batchId=document.getElementById("batchId").value;
+	flowcellLane=document.getElementById("flowcellLane").value;
+	flowcellId=document.getElementById("flowcellId").value;
+	comments=document.getElementById("comments").value;
+}
+function validateValues(){
+	var mayoLabId1,ngsAliquotId1,dateSubmitted1,concentration1,volume1,amount1,batchId1,flowcellLane1,flowcellId1,comments1,flag;
+	mayoLabId1=document.getElementById("mayoLabId").value;
+	ngsAliquotId1=document.getElementById("ngsAliquotId").value;
+	dateSubmitted1=document.getElementById("dateSubmitted").value;
+	concentration1=document.getElementById("concentration").value;
+	volume1=document.getElementById("volume").value;
+	amount1=document.getElementById("amount").value;
+	batchId1=document.getElementById("batchId").value;
+	flowcellLane1=document.getElementById("flowcellLane").value;
+	flowcellId1=document.getElementById("flowcellId").value;
+	comments1=document.getElementById("comments").value;
+	
+	
+	flag="true";
+	if(isDate(dateSubmitted1)){
+		$("#dateSubmittedError").hide();
+	}
+	else
+	{
+		$("#dateSubmittedError").show();
+		flag="false";
+	}
+	
+	if(isFloat(concentration1)){
+		$("#concError").hide();
+	}
+	else
+	{
+		$("#concError").show();
+		flag = "false";
+		
+	}
+	if(isFloat(volume1)){
+		$("#volumeError").hide();
+	}
+	else
+	{
+		$("#volumeError").show();
+		flag = "false";
+	}
+	if(isFloat(amount1)){
+		$("#amountError").hide();
+	}
+	else
+	{
+		$("#amountError").show();
+		flag = "false";
+		
+	}
+	
+	if(flag=="false")
+		return false;
+	
+	
+	
+	var confirmString="";
+	if(mayoLabId!=mayoLabId1)
+		confirmString=confirmString+"Mayo Lab Id has been changed from "+mayoLabId+" to "+mayoLabId1+"\n";
+	if(ngsAliquotId!=ngsAliquotId1)
+		confirmString=confirmString+"NGS Aliquot Id has been changed from "+ngsAliquotId+" to "+ngsAliquotId1+"\n";
+	
+	if(dateSubmitted.replace(/^\s+|\s+$/g, '')!=dateSubmitted1.replace(/^\s+|\s+$/g, ''))
+		confirmString=confirmString+"Date Submitted has been changed from "+dateSubmitted+" to "+dateSubmitted1+"\n";
+	if(volume.replace(/^\s+|\s+$/g, '')!=volume1.replace(/^\s+|\s+$/g, ''))
+		confirmString=confirmString+"Volume has been changed from "+volume+" to "+volume1+"\n";
+	if(concentration.replace(/^\s+|\s+$/g, '')!=concentration1.replace(/^\s+|\s+$/g, ''))
+		confirmString=confirmString+"Concentration has been changed from "+concentration+" to "+concentration1+"\n";
+	
+	if(amount.replace(/^\s+|\s+$/g, '')!=amount1.replace(/^\s+|\s+$/g, ''))
+		confirmString=confirmString+"Amount has been changed from "+amount+" to "+amount1+"\n";
+	
+	if(batchId!=batchId1)
+		confirmString=confirmString+"Batch Id has been changed from "+batchId+" to "+batchId1+"\n";
+	if(flowcellLane!=flowcellLane1)
+		confirmString=confirmString+"Flowcell Lane has been changed from "+flowcellLane+" to "+flowcellLane1+"\n";
+	if(flowcellId!=flowcellId1)
+		confirmString=confirmString+"Flowcell Id has been changed from "+flowcellId+" to "+flowcellId1+"\n";
+	
+	
+	if(comments.replace(/^\s+|\s+$/g, '')!=comments1.replace(/^\s+|\s+$/g, ''))
+		confirmString=confirmString+"Comments has been changed from "+comments+" to "+comments1+"\n";
+	if(confirmString.length>1)
+		return confirm(confirmString+"Do you want to save the above changes?");
+	else
+		return true;
+}
+</script>
+
+</head>
+<body id="content" onload="initialValues()">
+
+<%@include file="header.jsp" %>
+		<br/><br/>
+	<center>
+		<h2>Edit the below and save</h2>
+		<form:form method="POST" commandName="seqCoreEditModel" onsubmit="return validateValues()" >
+			<form:hidden path="uuid" />
+
+			<table>
+				
+				<tr>
+					<td>Mayo Lab Id</td>
+					<td><form:select path="mayoLabId" id="mayoLabId">
+						<form:options items="${mayoIds}" itemValue="mayoLabId"
+							itemLabel="mayoLabId" />
+						</form:select>
+					</td>
+				</tr>
+				<tr>
+					<td>NGS Aliquot Id</td>
+					<td><form:select path="ngsAliquotId" id="ngsAliquotId">
+					<c:forEach var="ngsAliquotIds" items="${ngsAliquotIds}">
+								<form:option value="${ngsAliquotIds.key}" label="${ngsAliquotIds.key}"/>
+					</c:forEach>
+					</form:select>
+					</td>
+				</tr>
+				<tr>
+					<td>Date Submitted</td>
+					<td><form:input path="dateSubmitted" id="dateSubmitted"/> (MM-dd-yyyy)<br>
+					<div class="error" id="dateSubmittedError" style="display:none;">
+							Invalid date format.
+						</div>
+					<%-- <form:errors path="dateSubmitted" cssClass="error"/> --%></td>
+				</tr>
+				<tr>
+					<td>Submitted Volume</td>
+					<td><form:input path="submittedVolume" id="volume"/><br>
+					<div class="error" id="volumeError" style="display:none;">
+							Invalid format, decimal values only.
+						</div>
+					<%-- <form:errors path="submittedVolume" cssClass="error"/> --%></td>
+				</tr>	
+				<tr>
+					<td>Submitted Concentration</td>
+					<td><form:input path="submittedConcentration" id="concentration"/><br>
+					<div class="error" id="concError" style="display:none;">
+							Invalid format, decimal values only.
+						</div>
+					<%-- <form:errors path="submittedConcentration" cssClass="error"/> --%></td>
+				</tr>
+				<tr>
+					<td>Submitted Amount</td>
+					<td><form:input path="submittedAmount" id="amount"/><br>
+					<div class="error" id="amountError" style="display:none;">
+							Invalid format, decimal values only.
+						</div>
+					<%-- <form:errors path="submittedAmount" cssClass="error"/> --%></td>
+				</tr>
+				<tr>
+					<td>Batch Id</td>
+					<td><form:select path="batchId"  id="batchId">
+					<c:forEach var="batchIds" items="${batchIds}">
+						<form:option value="${batchIds.key}" label="${batchIds.key}"/>
+					</c:forEach>
+					</form:select>
+					</td>
+				</tr>
+				<tr>
+					<td>Flowcell Lane</td>
+					<td><form:select path="flowcellLane" id="flowcellLane">
+						<c:forEach var="flowCellLanes" items="${flowCellLanes}">
+						<form:option value="${flowCellLanes.key}" label="${flowCellLanes.key}"/>
+					</c:forEach>
+					</form:select>
+					</td>
+				</tr>
+				<tr>
+					<td>Flowcell ID</td>
+					<td><form:input path="flowcellId" id="flowcellId"/>
+						
+					</td>
+				</tr>
+				<tr>
+					<td>Comments</td>
+					<td><form:input path="comments" id="comments"/></td>
+				</tr>
+			</table>
+			<br />
+
+			<input type="submit" value="Save" />&nbsp; 
+			
+		</form:form>
+		<br>
+		<button onclick="window.location='seqcoreCancelEdit.htm';">Cancel</button>
+	</center>
+</body>
+</html>

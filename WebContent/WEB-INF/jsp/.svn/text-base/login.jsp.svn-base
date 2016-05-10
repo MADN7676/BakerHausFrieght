@@ -1,0 +1,29 @@
+<%@ page language="java" contentType="text/html; charset=ISO-8859-1"
+	pageEncoding="ISO-8859-1"%>
+<!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN" "http://www.w3.org/TR/html4/loose.dtd">
+<%@ taglib uri="http://www.springframework.org/tags/form" prefix="form"%>
+<html>
+<head>
+<link rel="stylesheet" type="text/css" href="${pageContext.request.contextPath}/css/icpcg.css"/>
+<meta http-equiv="Content-Type" content="text/html; charset=ISO-8859-1">
+<title>ICPCG Login</title>
+</head>
+<body>
+<center>
+<br/><br/>
+<h1>Please Login Below to Access ICPCG Web-Application</h1><br/><br/><br/><br/><br/><br/><br/><br/>
+<form:form method="POST" commandName="loginModel">
+<table id="login">
+
+<tr ></tr>
+<tr><td id="loginInner"/><td id="loginInner">Lan ID <td id="loginInner"><form:input path="lanID" /><form:errors path="lanID" cssClass="error" /></td><td id="loginInner"/></tr>
+<tr></tr>
+<tr><td id="loginInner"/><td id="loginInner">Password</td><td id="loginInner"><form:password path="password"/><form:errors path="password" cssClass="error" /></td><td id="loginInner"/></tr>
+<tr></tr>
+</table><br/>
+<input type="submit" value="Login" />
+</form:form>
+
+</center>
+</body>
+</html>

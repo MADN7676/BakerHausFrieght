@@ -1,0 +1,254 @@
+<%@ page language="java" contentType="text/html; charset=ISO-8859-1"
+    pageEncoding="ISO-8859-1"%>
+<!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN" "http://www.w3.org/TR/html4/loose.dtd">
+<%@ taglib uri="http://www.springframework.org/tags/form" prefix="form"%>
+<%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c"%>
+<html>
+
+<meta http-equiv="Content-Type" content="text/html; charset=ISO-8859-1">
+<title>Edit Initial Specimen Tracking</title>
+<script type="text/javascript" src="${pageContext.request.contextPath}/javascripts/jquery-latest.js"></script>
+<script type="text/javascript" src="${pageContext.request.contextPath}/javascripts/scripts.js"></script>
+
+
+<script>
+var mayoLabID,subjectID,sourceDNAID,dnaSource,dnaSourceOther,dateBloodDraw,dnaConcentration,dnaVolume,dnaAmount,detectionMethod,detectionMethodOther,dateDNAReceived,comments;
+function initialValues(){
+	mayoLabID=document.getElementById("mayoLabID").value;
+	subjectID=document.getElementById("subjectID").value;
+	sourceDNAID=document.getElementById("sourceDNAID").value;
+	dnaSource=document.getElementById("dnaSource").value;
+	dnaSourceOther=document.getElementById("dnaSourceOther").value;
+	dateBloodDraw=document.getElementById("dateBloodDraw").value;
+	dnaConcentration=document.getElementById("dnaConcentration").value;
+	dnaVolume=document.getElementById("dnaVolume").value;
+	dnaAmount=document.getElementById("dnaAmount").value;
+	detectionMethod=document.getElementById("detectionMethod").value;
+	detectionMethodOther=document.getElementById("detectionMethodOther").value;
+	dateDNAReceived=document.getElementById("dateDNAReceived").value;
+	comments=document.getElementById("comments").value;
+}
+function validateValues(){
+	var mayoLabID1,subjectID1,sourceDNAID1,dnaSource1,dnaSourceOther1,dateBloodDraw1,dnaConcentration1,dnaVolume1,dnaAmount1,detectionMethod1,detectionMethodOther1,dateDNAReceived1,comments1,flag;
+	mayoLabID1=document.getElementById("mayoLabID").value;
+	subjectID1=document.getElementById("subjectID").value;
+	sourceDNAID1=document.getElementById("sourceDNAID").value;
+	dnaSource1=document.getElementById("dnaSource").value;
+	dnaSourceOther1=document.getElementById("dnaSourceOther").value;
+	dateBloodDraw1=document.getElementById("dateBloodDraw").value;
+	dnaConcentration1=document.getElementById("dnaConcentration").value;
+	dnaVolume1=document.getElementById("dnaVolume").value;
+	dnaAmount1=document.getElementById("dnaAmount").value;
+	detectionMethod1=document.getElementById("detectionMethod").value;
+	detectionMethodOther1=document.getElementById("detectionMethodOther").value;
+	dateDNAReceived1=document.getElementById("dateDNAReceived").value;
+	comments1=document.getElementById("comments").value;
+	
+	
+	flag="true";
+	if(isDate(dateBloodDraw1)){
+		$("#dateBloodDrawError").hide();
+	}
+	else
+	{
+		$("#dateBloodDrawError").show();
+		flag="false";
+	}
+	if(isDate(dateDNAReceived1)){
+		$("#dateDNAReceivedError").hide();
+	}
+	else
+	{
+		$("#dateDNAReceivedError").show();
+		flag="false";
+	}
+	if(isFloat(dnaConcentration1)){
+		$("#concError").hide();
+	}
+	else
+	{
+		$("#concError").show();
+		flag = "false";
+		
+	}
+	if(isFloat(dnaVolume1)){
+		$("#volumeError").hide();
+	}
+	else
+	{
+		$("#volumeError").show();
+		flag = "false";
+	}
+	if(isFloat(dnaAmount1)){
+		$("#amountError").hide();
+	}
+	else
+	{
+		$("#amountError").show();
+		flag = "false";
+		
+	}
+	
+	if(flag=="false")
+		return false;
+	
+	var confirmString="";
+	if(mayoLabID!=mayoLabID1)
+		confirmString=confirmString+"Mayo Lab ID has been changed from "+mayoLabID+" to "+mayoLabID1+"\n";
+	if(subjectID!=subjectID1)
+		confirmString=confirmString+"Subject ID has been changed from "+subjectID+" to "+subjectID1+"\n";
+	if(sourceDNAID!=sourceDNAID1)
+		confirmString=confirmString+"Source DNA ID has been changed from "+sourceDNAID+" to "+sourceDNAID1+"\n";
+	if(dnaSource!=dnaSource1)
+		confirmString=confirmString+"DNA Source has been changed from "+dnaSource+" to "+dnaSource1+"\n";
+	if(dnaSourceOther!=dnaSourceOther1)
+		confirmString=confirmString+"DNA Source Other has been changed from "+dnaSourceOther+" to "+dnaSourceOther1+"\n";
+	if(dateBloodDraw.replace(/^\s+|\s+$/g, '')!=dateBloodDraw1.replace(/^\s+|\s+$/g, ''))
+		confirmString=confirmString+"Date Blood Drawn has been changed from "+dateBloodDraw+" to "+dateBloodDraw1+"\n";
+	if(dnaConcentration.replace(/^\s+|\s+$/g, '')!=dnaConcentration1.replace(/^\s+|\s+$/g, ''))
+		confirmString=confirmString+"DNA Concentration has been changed from "+dnaConcentration+" to "+dnaConcentration1+"\n";
+	if(dnaVolume.replace(/^\s+|\s+$/g, '')!=dnaVolume1.replace(/^\s+|\s+$/g, ''))
+		confirmString=confirmString+"DNA Volume has been changed from "+dnaVolume+" to "+dnaVolume1+"\n";
+	if(dnaAmount.replace(/^\s+|\s+$/g, '')!=dnaAmount1.replace(/^\s+|\s+$/g, ''))
+		confirmString=confirmString+"DNA Amount has been changed from "+dnaAmount+" to "+dnaAmount1+"\n";
+	if(detectionMethod!=detectionMethod1)
+		confirmString=confirmString+"Detection Method has been changed from "+detectionMethod+" to "+detectionMethod1+"\n";
+	if(detectionMethodOther.replace(/^\s+|\s+$/g, '')!=detectionMethodOther1.replace(/^\s+|\s+$/g, ''))
+		confirmString=confirmString+"Detection Method Other has been changed from "+detectionMethodOther+" to "+detectionMethodOther1+"\n";
+	if(dateDNAReceived.replace(/^\s+|\s+$/g, '')!=dateDNAReceived1.replace(/^\s+|\s+$/g, ''))
+		confirmString=confirmString+"Date DNA Received has been changed from "+dateDNAReceived+" to "+dateDNAReceived1+"\n";
+	if(comments.replace(/^\s+|\s+$/g, '')!=comments1.replace(/^\s+|\s+$/g, ''))
+		confirmString=confirmString+"Comments has been changed from "+comments+" to "+comments1+"\n";
+	if(confirmString.length>1)
+		return confirm(confirmString+"Do you want to save the above changes?");
+	else
+		return true;
+}
+</script>
+
+
+
+</head>
+<body id="content" onload="initialValues()">
+
+<%@include file="header.jsp" %>
+		<br/><br/>
+<center>
+		<h2>Edit the below and save</h2>
+		<form:form method="POST" commandName="initSpecTrackEditModel" onsubmit="return validateValues()">
+			<form:hidden path="uuid" />
+
+			<table>
+				
+				<tr>
+					<td>Mayo Lab Id</td>
+					<td><form:select path="mayoLabID" id="mayoLabID" >
+						<form:options items="${mayoIds}" itemValue="mayoLabID"
+							itemLabel="mayoLabID" />
+						</form:select>
+					</td>
+				</tr>
+				<tr>
+					<td>Subject Id</td>
+					<td><form:select path="subjectID" id="subjectID">
+						<c:forEach var="subjectIds" items="${subjectIds}">
+								<form:option value="${subjectIds.key}" label="${subjectIds.key}"/>
+							</c:forEach>
+						</form:select>
+					</td>
+				</tr>
+				<tr>
+					<td>Source DNA Id</td>
+					<td><form:select path="sourceDNAID" id="sourceDNAID">
+						<c:forEach var="dnaIds" items="${dnaIds}">
+								<form:option value="${dnaIds.key}" label="${dnaIds.key}"/>
+							</c:forEach>
+							</form:select>
+					</td>
+				</tr>
+				<tr>
+					<td>DNA Source</td>
+					<td><form:select path="dnaSource" id="dnaSource">
+						<c:forEach var="dnaSources" items="${dnaSources}">
+								<form:option value="${dnaSources.key}" label="${dnaSources.key}"/>
+							</c:forEach>
+							</form:select>
+					</td>
+				</tr>	
+				<tr>
+					<td>DNA Source Other</td>
+					<td><form:select path="dnaSourceOther" id="dnaSourceOther">
+						<c:forEach var="dnaSourcesOther" items="${dnaSourcesOther}">
+								<form:option value="${dnaSourcesOther.key}" label="${dnaSourcesOther.key}"/>
+							</c:forEach>
+							</form:select>
+					</td>
+				</tr>
+				<tr>
+					<td>Date Blood Drawn</td>
+					<td><form:input path="dateBloodDraw" id="dateBloodDraw"/> (MM-dd-yyyy)<br>
+					<div class="error" id="dateBloodDrawError" style="display:none;">
+							Invalid date format.
+						</div>
+					<%-- <form:errors path="dateBloodDraw" cssClass="error"/> --%></td>
+				</tr>
+				<tr>
+					<td>DNA Concentration</td>
+					<td><form:input path="dnaConcentration" id="dnaConcentration"/><br>
+					<div class="error" id="concError" style="display:none;">
+							Invalid format, decimal values only.
+						</div>
+					<%-- <form:errors path="dnaConcentration" cssClass="error"/> --%></td>
+				</tr>
+				<tr>
+					<td>DNA Volume</td>
+					<td><form:input path="dnaVolume" id="dnaVolume"/><br>
+					<div class="error" id="volumeError" style="display:none;">
+							Invalid format, decimal values only.
+						</div>
+					<%-- <form:errors path="dnaVolume" cssClass="error"/> --%></td>
+				</tr>
+				<tr>
+					<td>DNA Amount</td>
+					<td><form:input path="dnaAmount" id="dnaAmount"/><br>
+					<div class="error" id="amountError" style="display:none;">
+							Invalid format, decimal values only.
+						</div>
+					<%-- <form:errors path="dnaAmount" cssClass="error"/> --%></td>
+				</tr>
+				<tr>
+					<td>Detection Method</td>
+					<td><form:select path="detectionMethod" id="detectionMethod" >
+						<c:forEach var="detectionMethods" items="${detectionMethods}">
+								<form:option value="${detectionMethods.key}" label="${detectionMethods.key}"/>
+						</c:forEach>
+					</form:select>
+					</td>
+				</tr>
+				<tr>
+					<td>Detection Method Other</td>
+					<td><form:input path="detectionMethodOther" id="detectionMethodOther"/></td>
+				</tr>
+				<tr>
+					<td>Date DNA Received </td>
+					<td><form:input path="dateDNAReceived" id="dateDNAReceived"/> (MM-dd-yyyy)<br>
+					<div class="error" id="dateDNAReceivedError" style="display:none;">
+							Invalid date format.
+						</div>
+					<%-- <form:errors path="dateDNAReceived" cssClass="error"/> --%></td>
+				</tr>
+				<tr>
+					<td>Comments</td>
+					<td><form:input path="initialSpecimenTrackingComments" id="comments"/></td>
+				</tr>
+			</table>
+			<br />
+
+			<input type="submit" value="Save" />&nbsp; 
+			
+		</form:form>
+		<br>
+		<button onclick="window.location='initialCancelEdit.htm';">Cancel</button>
+	</center>
+</body>
+</html>

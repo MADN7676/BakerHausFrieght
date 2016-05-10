@@ -1,0 +1,42 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<beans xmlns="http://www.springframework.org/schema/beans"
+	xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+	xmlns:p="http://www.springframework.org/schema/p"
+	xsi:schemaLocation="http://www.springframework.org/schema/beans http://www.springframework.org/schema/beans/spring-beans.xsd">
+
+	<bean id="viewResolver"
+          class="org.springframework.web.servlet.view.InternalResourceViewResolver" >
+        <property name="prefix">
+            <value>/WEB-INF/jsp/</value>
+        </property>
+        <property name="suffix">
+            <value>.jsp</value>
+        </property>
+    </bean>
+    
+     
+    <bean id="handlerMapping" class="org.springframework.web.servlet.handler.BeanNameUrlHandlerMapping" 
+    p:interceptors-ref="loginInterceptor" />
+    
+    <bean id="loginInterceptor" class="com.backer.authentication.LoginInterceptor" />
+    <bean name="/logout.htm" class="com.backer.authentication.LogoutController"/>
+    
+    <bean id="backerDAOImpl" class="com.backer.dao.BackerDAOImpl"/>
+    
+    <bean id="messageSource" class="org.springframework.context.support.ResourceBundleMessageSource" p:basename="messages" />
+    
+    <bean id="loginValidator" class="com.backer.authentication.LoginValidator"
+    p:backerDAOImpl-ref="backerDAOImpl"/>
+    
+    <bean name="/login.htm" class="com.backer.authentication.LoginController" 
+     p:formView="login" p:successView="redirect:home.htm" 
+     p:validator-ref="loginValidator"/>
+    
+    <bean name="/addFreightDetails.htm" class="com.backer.controllers.FreightDetailAddController" 
+     p:backerDAOImpl-ref="backerDAOImpl" 
+     p:formView="addFreight" p:successView="redirect:home.htm"/>
+    
+    <bean name="/home.htm" class="com.backer.controllers.FreightDetailHomeController" 
+     p:backerDAOImpl-ref="backerDAOImpl"/>
+        
+</beans>

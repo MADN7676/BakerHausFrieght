@@ -1,0 +1,57 @@
+<%@ page language="java" contentType="text/html; charset=ISO-8859-1"
+	pageEncoding="ISO-8859-1"%>
+<!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN" "http://www.w3.org/TR/html4/loose.dtd">
+<%@ taglib uri="http://www.springframework.org/tags/form" prefix="form"%>
+<html>
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=ISO-8859-1">
+<title>Track DNAQC</title>
+</head>
+<body id="content">
+	<%@include file="header.jsp" %>
+	<br/><br/>
+	<center>
+		<h2>Select the criteria to track DNAQC information</h2>
+		<form:form method="POST" commandName="initSpecTrackModel">
+			<table>
+				<tr>
+					<td>Mayo Lab Id's:</td>
+					<td><form:select path="selectedMayoIds" multiple="true"
+							size="5">
+							<form:option value="0" label="select" />
+							<form:options items="${mayoIds}" itemValue="mayoLabID"
+								itemLabel="mayoLabID" />
+						</form:select>
+					</td>
+				</tr>
+				<tr>
+					<td>Parent RLIMS Ids:</td>
+					<td><form:select path="selectedParentRlimsIds" multiple="true"
+							size="5">
+							<form:option value="0" label="select" />
+							<form:options items="${parentRlimsIds}" itemValue="parentRLIMSID"
+								itemLabel="parentRLIMSID" />
+						</form:select>
+					</td>
+				</tr>
+				<tr>
+					<td>Date's Additional DNA Requested Between:</td>
+					<td><form:input path="addRequestFrom" />&nbsp; (mm/dd/yyyy)
+						&nbsp;to<form:input path="addRequestTo" /> &nbsp; (mm/dd/yyyy)<br>
+					<form:errors path="addRequestFrom" cssClass="error" />&nbsp;<form:errors
+							path="addRequestTo" cssClass="error" /></td>
+				</tr>
+				<tr>
+					<td>Date's Additional DNA Received Between:</td>
+					<td><form:input path="addReceivedFrom" />&nbsp; (mm/dd/yyyy)
+						&nbsp;to<form:input path="addReceivedTo" /> &nbsp; (mm/dd/yyyy)<br>
+					<form:errors path="addReceivedFrom" cssClass="error" />&nbsp;<form:errors
+							path="addReceivedTo" cssClass="error" /></td>
+				</tr>
+			</table>
+			<br />
+			<input type="submit" value="Track" />
+		</form:form>
+	</center>
+</body>
+</html>

@@ -1,0 +1,7 @@
+dialect=org.hibernate.dialect.MYSQLDialect
+connection.driver_class=org.gjt.mm.mysql.Driver
+connection.url=jdbc:mysql://172.24.156.117:3306/icpcgdata
+connection.username=icpcgadmin
+connection.password=icpcg$pass
+hibernate.hbm2ddl.auto=update
+show_sql=true

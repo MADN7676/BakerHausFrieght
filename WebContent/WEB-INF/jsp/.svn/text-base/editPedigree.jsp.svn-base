@@ -1,0 +1,134 @@
+<%@ page language="java" contentType="text/html; charset=ISO-8859-1"
+    pageEncoding="ISO-8859-1"%>
+<!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN" "http://www.w3.org/TR/html4/loose.dtd">
+<%@ taglib uri="http://www.springframework.org/tags/form" prefix="form"%>
+<%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c"%>
+<html>
+
+<meta http-equiv="Content-Type" content="text/html; charset=ISO-8859-1">
+<title>Edit Pedigree Information</title>
+<script>
+var entryId,personId,pedigreeId,subjectId,seventyFive,twoSeventyFive,comments,groupName;
+function initialValues(){
+	entryId=document.getElementById("entryId").value;
+	personId=document.getElementById("personId").value;
+	pedigreeId=document.getElementById("pedigreeId").value;
+	subjectId=document.getElementById("subjectId").value;
+	seventyFive=document.getElementById("seventyFive").checked;
+	twoSeventyFive=document.getElementById("twoSeventyFive").checked;
+	groupName=document.getElementById("groupName").value;
+	comments=document.getElementById("comments").value;
+}
+function validateValues(){
+	var entryId1,personId1,pedigreeId1,subjectId1,seventyFive1,twoSeventyFive1,comments1,groupName1;
+	entryId1=document.getElementById("entryId").value;
+	personId1=document.getElementById("personId").value;
+	pedigreeId1=document.getElementById("pedigreeId").value;
+	subjectId1=document.getElementById("subjectId").value;
+	seventyFive1=document.getElementById("seventyFive").checked;
+	twoSeventyFive1=document.getElementById("twoSeventyFive").checked;
+	groupName1=document.getElementById("groupName").value;
+	comments1=document.getElementById("comments").value;
+	var confirmString="";
+	if(entryId!=entryId1)
+		confirmString=confirmString+"EntryID has been changed from "+entryId+" to "+entryId1+"\n";
+	if(subjectId!=subjectId1)
+		confirmString=confirmString+"SubjectID has been changed from "+subjectId+" to "+subjectId1+"\n";
+	if(groupName!=groupName1)
+		confirmString=confirmString+"GroupName has been changed from "+groupName+" to "+groupName1+"\n";
+	if(pedigreeId!=pedigreeId1)
+		confirmString=confirmString+"PedigreeID has been changed from "+pedigreeId+" to "+pedigreeId1+"\n";
+	if(personId!=personId1)
+		confirmString=confirmString+"PersonID has been changed from "+personId+" to "+personId1+"\n";
+	if(seventyFive && !seventyFive1)
+		confirmString=confirmString+"75VS275 has been changed from 75 to 275\n";
+	if(twoSeventyFive && !twoSeventyFive1)
+		confirmString=confirmString+"75VS275 has been changed from 275 to 75\n";
+	if(comments.replace(/^\s+|\s+$/g, '')!=comments1.replace(/^\s+|\s+$/g, ''))
+		confirmString=confirmString+"Comments has been changed from "+comments+" to "+comments1+"\n";
+	if(confirmString.length>1)
+		return confirm(confirmString+"Do you want to save the above changes?");
+	else
+		return true;
+}
+</script>
+
+</head>
+<body id="content" onload="initialValues()">
+
+<%@include file="header.jsp" %>
+		<br/><br/>
+	<center>
+		<h2>Edit below and save</h2>
+		<form:form method="POST" commandName="pedigreeInfoEditModel" onsubmit="return validateValues()">
+			<form:hidden path="uuid" />
+
+			<table>
+				
+				<tr>
+					<td>Entry ID</td>
+					<td><form:select path="entryId"  id="entryId" >
+						<c:forEach var="entryIds" items="${entryIds}">
+							<form:option value="${entryIds.key}" label="${entryIds.key}"/>
+						</c:forEach>
+					</form:select>
+					</td>
+				</tr>
+				<tr>
+					<td>Subject ID</td>
+					<td><form:select path="subjectId" id="subjectId" >
+						<form:options items="${subjectIds}" itemValue="subjectId"
+							itemLabel="subjectId" />
+						</form:select>
+					</td>
+				</tr>
+				<tr>
+					<td>Group Name</td>
+					<td><%-- <form:input path="groupName" /> --%>
+					<form:select path="groupName" id="groupName" >
+						
+							<c:forEach var="groups" items="${groupNames}">
+								<form:option value="${groups.key}" label="${groups.key}"/>
+							</c:forEach>
+				</form:select>
+					</td>
+				</tr>
+				<tr>
+					<td>Pedigree ID</td>
+					<td><form:select path="pedigreeId" id="pedigreeId" >
+					<c:forEach var="pedigreeIds" items="${pedigreeIds}">
+								<form:option value="${pedigreeIds.key}" label="${pedigreeIds.key}"/>
+							</c:forEach>
+				</form:select>
+					</td>
+				</tr>	
+				<tr>
+					<td>Person ID</td>
+					<td><form:select path="personId" id="personId" >
+					<c:forEach var="personIds" items="${personIds}">
+								<form:option value="${personIds.key}" label="${personIds.key}"/>
+							</c:forEach>
+				</form:select>
+					</td>
+				</tr>
+				<tr>
+					<td>75VS275</td>
+					<td><form:radiobutton path="seventyFiveVSTwoSeventyFive"  value="75" label="75" id="seventyFive" />
+					<form:radiobutton path="seventyFiveVSTwoSeventyFive"  value="275" label="275" id="twoSeventyFive" />
+					</td>
+				</tr>
+				<tr>
+					<td>Comments</td>
+					<td><form:input path="comments" id="comments"/></td>
+				</tr>
+			</table>
+			<br />
+
+			<input type="submit" value="Save"/>  
+			
+		</form:form>
+		<br>
+		<button onclick="window.location='pedigreeCancelEdit.htm';">Cancel</button>
+	</center>
+</body>
+</html>

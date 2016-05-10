@@ -1,0 +1,7 @@
+dialect=org.hibernate.dialect.SQLServerDialect
+connection.driver_class=net.sourceforge.jtds.jdbc.Driver
+connection.url=jdbc:jtds:sqlserver://ROEFDN809Q.mayo.edu:4900;instanceName=FDNDEV13;DatabaseName=icpcg_dev;Domain=MFAD
+connection.username=TU04221
+connection.password=bsu95778
+hibernate.hbm2ddl.auto=update
+show_sql=true

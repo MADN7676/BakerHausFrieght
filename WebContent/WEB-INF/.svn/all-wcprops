@@ -1,0 +1,29 @@
+K 25
+svn:wc:ra_dav:version-url
+V 67
+/main/!svn/ver/2056/projects/i/icpcg/trunk/icpcg/WebContent/WEB-INF
+END
+database_sqlserver.properties
+K 25
+svn:wc:ra_dav:version-url
+V 97
+/main/!svn/ver/4528/projects/i/icpcg/trunk/icpcg/WebContent/WEB-INF/database_sqlserver.properties
+END
+database.properties
+K 25
+svn:wc:ra_dav:version-url
+V 87
+/main/!svn/ver/4528/projects/i/icpcg/trunk/icpcg/WebContent/WEB-INF/database.properties
+END
+dispatcher-servlet.xml
+K 25
+svn:wc:ra_dav:version-url
+V 90
+/main/!svn/ver/5456/projects/i/icpcg/trunk/icpcg/WebContent/WEB-INF/dispatcher-servlet.xml
+END
+web.xml
+K 25
+svn:wc:ra_dav:version-url
+V 75
+/main/!svn/ver/4070/projects/i/icpcg/trunk/icpcg/WebContent/WEB-INF/web.xml
+END

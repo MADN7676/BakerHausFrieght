@@ -1,0 +1,173 @@
+K 25
+svn:wc:ra_dav:version-url
+V 71
+/main/!svn/ver/2056/projects/i/icpcg/trunk/icpcg/WebContent/WEB-INF/jsp
+END
+editGenoCore.jsp
+K 25
+svn:wc:ra_dav:version-url
+V 88
+/main/!svn/ver/4749/projects/i/icpcg/trunk/icpcg/WebContent/WEB-INF/jsp/editGenoCore.jsp
+END
+dnaqc.jsp
+K 25
+svn:wc:ra_dav:version-url
+V 81
+/main/!svn/ver/4528/projects/i/icpcg/trunk/icpcg/WebContent/WEB-INF/jsp/dnaqc.jsp
+END
+login.jsp
+K 25
+svn:wc:ra_dav:version-url
+V 81
+/main/!svn/ver/4171/projects/i/icpcg/trunk/icpcg/WebContent/WEB-INF/jsp/login.jsp
+END
+editDNAQCRun.jsp
+K 25
+svn:wc:ra_dav:version-url
+V 88
+/main/!svn/ver/4749/projects/i/icpcg/trunk/icpcg/WebContent/WEB-INF/jsp/editDNAQCRun.jsp
+END
+header.jsp
+K 25
+svn:wc:ra_dav:version-url
+V 82
+/main/!svn/ver/4291/projects/i/icpcg/trunk/icpcg/WebContent/WEB-INF/jsp/header.jsp
+END
+editPedigree.jsp
+K 25
+svn:wc:ra_dav:version-url
+V 88
+/main/!svn/ver/4098/projects/i/icpcg/trunk/icpcg/WebContent/WEB-INF/jsp/editPedigree.jsp
+END
+pedigreeInfoResult.jsp
+K 25
+svn:wc:ra_dav:version-url
+V 94
+/main/!svn/ver/5491/projects/i/icpcg/trunk/icpcg/WebContent/WEB-INF/jsp/pedigreeInfoResult.jsp
+END
+dnaqcRunResult1.jsp
+K 25
+svn:wc:ra_dav:version-url
+V 91
+/main/!svn/ver/5491/projects/i/icpcg/trunk/icpcg/WebContent/WEB-INF/jsp/dnaqcRunResult1.jsp
+END
+dnaqcTrackResult1.jsp
+K 25
+svn:wc:ra_dav:version-url
+V 93
+/main/!svn/ver/5491/projects/i/icpcg/trunk/icpcg/WebContent/WEB-INF/jsp/dnaqcTrackResult1.jsp
+END
+pedigreeInfo.jsp
+K 25
+svn:wc:ra_dav:version-url
+V 88
+/main/!svn/ver/4098/projects/i/icpcg/trunk/icpcg/WebContent/WEB-INF/jsp/pedigreeInfo.jsp
+END
+editSeqCore.jsp
+K 25
+svn:wc:ra_dav:version-url
+V 87
+/main/!svn/ver/4749/projects/i/icpcg/trunk/icpcg/WebContent/WEB-INF/jsp/editSeqCore.jsp
+END
+report.jsp
+K 25
+svn:wc:ra_dav:version-url
+V 82
+/main/!svn/ver/4689/projects/i/icpcg/trunk/icpcg/WebContent/WEB-INF/jsp/report.jsp
+END
+initSpecTrackResult1.jsp
+K 25
+svn:wc:ra_dav:version-url
+V 96
+/main/!svn/ver/5491/projects/i/icpcg/trunk/icpcg/WebContent/WEB-INF/jsp/initSpecTrackResult1.jsp
+END
+genocoreResult1.jsp
+K 25
+svn:wc:ra_dav:version-url
+V 91
+/main/!svn/ver/5491/projects/i/icpcg/trunk/icpcg/WebContent/WEB-INF/jsp/genocoreResult1.jsp
+END
+seqcoreResult1.jsp
+K 25
+svn:wc:ra_dav:version-url
+V 90
+/main/!svn/ver/5491/projects/i/icpcg/trunk/icpcg/WebContent/WEB-INF/jsp/seqcoreResult1.jsp
+END
+editInitial.jsp
+K 25
+svn:wc:ra_dav:version-url
+V 87
+/main/!svn/ver/4749/projects/i/icpcg/trunk/icpcg/WebContent/WEB-INF/jsp/editInitial.jsp
+END
+seqcoreResult.jsp
+K 25
+svn:wc:ra_dav:version-url
+V 89
+/main/!svn/ver/5491/projects/i/icpcg/trunk/icpcg/WebContent/WEB-INF/jsp/seqcoreResult.jsp
+END
+genocoreResult.jsp
+K 25
+svn:wc:ra_dav:version-url
+V 90
+/main/!svn/ver/5491/projects/i/icpcg/trunk/icpcg/WebContent/WEB-INF/jsp/genocoreResult.jsp
+END
+initSpecTrackResult.jsp
+K 25
+svn:wc:ra_dav:version-url
+V 95
+/main/!svn/ver/5491/projects/i/icpcg/trunk/icpcg/WebContent/WEB-INF/jsp/initSpecTrackResult.jsp
+END
+genocore.jsp
+K 25
+svn:wc:ra_dav:version-url
+V 84
+/main/!svn/ver/4098/projects/i/icpcg/trunk/icpcg/WebContent/WEB-INF/jsp/genocore.jsp
+END
+seqcore.jsp
+K 25
+svn:wc:ra_dav:version-url
+V 83
+/main/!svn/ver/4098/projects/i/icpcg/trunk/icpcg/WebContent/WEB-INF/jsp/seqcore.jsp
+END
+home.jsp
+K 25
+svn:wc:ra_dav:version-url
+V 80
+/main/!svn/ver/5040/projects/i/icpcg/trunk/icpcg/WebContent/WEB-INF/jsp/home.jsp
+END
+dnaqcRunResult.jsp
+K 25
+svn:wc:ra_dav:version-url
+V 90
+/main/!svn/ver/5491/projects/i/icpcg/trunk/icpcg/WebContent/WEB-INF/jsp/dnaqcRunResult.jsp
+END
+dnaqcTrackResult.jsp
+K 25
+svn:wc:ra_dav:version-url
+V 92
+/main/!svn/ver/5491/projects/i/icpcg/trunk/icpcg/WebContent/WEB-INF/jsp/dnaqcTrackResult.jsp
+END
+editDNAQC.jsp
+K 25
+svn:wc:ra_dav:version-url
+V 85
+/main/!svn/ver/4749/projects/i/icpcg/trunk/icpcg/WebContent/WEB-INF/jsp/editDNAQC.jsp
+END
+pedigreeInfoResult1.jsp
+K 25
+svn:wc:ra_dav:version-url
+V 95
+/main/!svn/ver/5491/projects/i/icpcg/trunk/icpcg/WebContent/WEB-INF/jsp/pedigreeInfoResult1.jsp
+END
+dnaqcRun.jsp
+K 25
+svn:wc:ra_dav:version-url
+V 84
+/main/!svn/ver/4098/projects/i/icpcg/trunk/icpcg/WebContent/WEB-INF/jsp/dnaqcRun.jsp
+END
+initial.jsp
+K 25
+svn:wc:ra_dav:version-url
+V 83
+/main/!svn/ver/4098/projects/i/icpcg/trunk/icpcg/WebContent/WEB-INF/jsp/initial.jsp
+END

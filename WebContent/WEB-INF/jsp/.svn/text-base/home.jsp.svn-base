@@ -1,0 +1,153 @@
+<%@ page language="java" contentType="text/html; charset=ISO-8859-1"
+	pageEncoding="ISO-8859-1"%>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml-transitional.dtd">
+<%@ taglib uri="http://www.springframework.org/tags/form" prefix="form"%>
+<%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c"%>
+<html>
+
+<head>
+
+<title>ICPCG</title>
+</head>
+
+<body id="content">
+
+<%@include file="header.jsp" %>
+		<br/><br/>
+	<center>
+		
+		<h2>Make selections below for a complete report</h2>
+		<form:form method="POST" commandName="homeFormModel">
+		<form:errors path="*" cssClass="error" />
+		<br></br>
+		
+		<table class="data-table">
+
+				<tr>
+					<td>Mayo Lab Id's:</td>
+			<td><form:select path="selectedMayoIds" multiple="true" size="3">
+				
+				<form:options items="${mayoIds}" itemValue="mayoLabID"
+					itemLabel="mayoLabID" />
+			</form:select></td>
+			</tr>
+			
+			<tr>
+				<td>Pedigree Id's:</td>
+			<td><form:select path="selectedPedigreeIds" multiple="true" size="3">
+				
+				<c:forEach var="pedigreeIds" items="${pedigreeIds}">
+					<form:option value="${pedigreeIds.key}" label="${pedigreeIds.key}"/>
+				</c:forEach>
+			</form:select></td>
+			</tr>
+			<tr>
+				<td>Person Id's:</td>
+			<td><form:select path="selectedPersonIds" multiple="true" size="3">
+				
+				<c:forEach var="personIds" items="${personIds}">
+					<form:option value="${personIds.key}" label="${personIds.key}"/>
+				</c:forEach>
+			</form:select></td>
+			</tr>
+			<tr>
+				<td>Group Name's:</td>
+				<td><form:select path="selectedGroupNames" multiple="true" size="5">
+					<c:forEach var="groups" items="${groupNames}">
+						<form:option value="${groups.key}" label="${groups.key}"/>
+					</c:forEach>
+				</form:select></td>
+			</tr>
+			</table>
+			<table class="data-table">
+			<tr>
+					<td>Pedigree Information Elements:</td>
+			<td>
+			<form:select path="selectedPedigreeElements" multiple="true" size="3">
+				
+				<form:option value="entryId" label="Entry ID"/>
+				<form:option value="groupName" label="Group Name"/>
+				<form:option value="pedigreeId" label="Pedigree ID"/>
+				<form:option value="personId" label="Person ID"/>
+				<form:option value="75VS275" label="75VS275"/>
+				<form:option value="subjectId" label="Subject ID"/>
+				<form:option value="comments" label="Comments"/>
+			</form:select></td></tr>
+			<tr>
+					<td>Initial Specimen Tracking Elements:</td>
+			<td>
+			<form:select path="selectedInitialElements" multiple="true" size="3">
+				
+				<form:option value="subjectId" label="Subject ID"/>
+				<form:option value="sourceDNAID" label="Source DNA ID"/>
+				<form:option value="dnaSource" label="DNA Source"/>
+				<form:option value="dnaSourceOther" label="DNA Source Other"/>
+				<form:option value="dateBloodDraw" label="Date Blood Drawn"/>
+				<form:option value="dnaConc" label="DNA Concentration"/>
+				<form:option value="dnaVol" label="DNA Volume"/>
+				<form:option value="dnaAmount" label="DNA Amount"/>
+				<form:option value="detectMethod" label="Detection Method"/>
+				<form:option value="detectMethodOther" label="Detection Method Other"/>
+				<form:option value="dateReceived" label="Date DNA Received"/>
+				<form:option value="comments" label="Comments"/>
+			</form:select></td></tr>
+			 <tr>
+					<td>DNAQC Elements:</td>
+			<td>
+			<form:select path="selectedDNAQCElements" multiple="true" size="3">
+				
+				<form:option value="parentRLIMSId" label="Parent RLIMS ID"/>
+				<form:option value="preNGSVolume" label="Pre-NGS Volume"/>
+				<form:option value="preNGSAmount" label="Pre-NGS Amount"/>
+				<form:option value="preNGSConc" label="Pre-NGS Concentration"/>
+				<form:option value="dateAddDNAReq" label="Date Additional DNA Requested"/>
+				<form:option value="dateAddDNARec" label="Date Additional DNA Received"/>
+				<form:option value="dnaqcFollowupStrategy" label="DNA QC Followup Strategy"/>
+				<form:option value="comments" label="Comments"/>
+			</form:select></td></tr>
+			<tr>
+					<td>DNAQC Run Elements:</td>
+			<td>
+			<form:select path="selectedDNAQCRunElements" multiple="true" size="3">
+				
+				
+				<form:option value="volume" label="Volume"/>
+				<form:option value="amount" label="Amount"/>
+				<form:option value="qubitR" label="Qubit Reading"/>
+			</form:select></td></tr>
+			<tr>
+					<td>Sequencing Core Submission Elements:</td>
+			<td>
+			<form:select path="selectedSequencingCoreSubmissionElements" multiple="true" size="3">
+				
+				<form:option value="ngsAliquotId" label="NGS Aliquot ID"/>
+				<form:option value="dateSub" label="Date Submitted"/>
+				<form:option value="subVol" label="Submitted Volume"/>
+				<form:option value="subConc" label="Submitted Concentration"/>
+				<form:option value="subAmount" label="Submitted Amount"/>
+				<form:option value="batchId" label="Batch ID"/>
+				<form:option value="flowcellLane" label="Flowcell Lane"/>
+				<form:option value="comments" label="Comments"/>
+			</form:select></td></tr>
+			<tr>
+					<td>Genotyping Core Submission Elements:</td>
+			<td>
+			<form:select path="selectedGenotypingCoreSubmissionElements" multiple="true" size="3">
+				<form:option value="dateSub" label="Date Submitted"/>
+				<form:option value="subVol" label="Submitted Volume"/>
+				<form:option value="subConc" label="Submitted Concentration"/>
+				<form:option value="subAmount" label="Submitted Amount"/>
+				<form:option value="plateId" label="Plate ID"/>
+				<form:option value="wellId" label="wellId"/>
+				<form:option value="comments" label="Comments"/>
+			</form:select></td></tr>
+			</table>
+			<p>
+			<br></br><input type="submit" value="Track" /></p>
+		</form:form>
+		 <br />
+	</center>
+	
+
+</body>
+</html>

@@ -1,0 +1,61 @@
+a {
+	text-decoration: none;
+}
+table,td,th {
+	border: 1px solid black;
+}
+.data-table {
+	
+	display: inline-block;
+	vertical-align: top;
+}
+td {
+	text-align: left;
+}
+.error {
+	color: #ff0000;
+	font-style: italic;
+}
+#login{ 
+background-color:#EAF2D3; 
+border: 1px solid black;
+text-align: left;
+}
+#loginInner{
+	border: 0px solid black;
+}
+#links{
+	background-color:#80CCB3;
+	font-size:19px;
+	font-weight:bold;
+	align:middle;
+	white-space: nowrap;
+    
+}
+#logout{
+	float: right;
+}
+#content{
+	background-color:#EFF3E2;
+	white-space: nowrap;
+}
+#header{
+	background-color:#FFFFFF;
+	white-space: nowrap;
+    
+}
+h1{
+	font-size:40px;
+	color:#315181;
+	margin:0 0 0 0;
+}
+h2{
+	font-size:30px;
+}
+img{
+	height:100px;	
+}
+
+a:link{color:#6E0606;}
+a:visited{color:#6E0606;}
+a:hover{color:red;}
